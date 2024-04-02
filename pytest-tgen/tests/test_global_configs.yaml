@@ -1,0 +1,19 @@
+---
+  name: global configuration
+  output_file_name: auto_gendered_test.py
+  test_suit_generator_version: 1.0.0
+  run_test_suit_generator: True
+
+  communication_ports:
+      localhost:
+        speed: 0
+        platform: 'windows'
+        prompt: '$env:USERPROFILE'
+
+      platforms:
+        imx8m-uart:
+          speed: 115200
+          comport: 'COM5'
+          prompt: 'root@imx8mm-var-dart:~# '
+  flags:
+    has_com_obj : yes

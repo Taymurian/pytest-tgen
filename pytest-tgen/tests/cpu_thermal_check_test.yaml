@@ -1,0 +1,38 @@
+---
+  test_case_id: thermal_test_case_01
+  test_case_description: check cpu temperature
+  test_case_metadata:
+          minor: temperature
+          major: cpu
+          group: thermal
+          order: 01
+  platforms: imx8m-uart
+  sequences:
+      minor: '01'
+      major: '10'
+  is_active: yes
+  style: "UART"
+  repeat: 1
+  steps:
+    - step: 00
+
+      desc: checking the cpu temperature
+      host: imx8m-uart
+      cmd: cat /sys/class/thermal/thermal_zone0/temp
+
+      receiver: imx8m-uart
+      expect: "should  below the limit"
+      regex: '\d{5}'
+
+      assertion: '<='
+      limit: 90000
+      reaction: " The temperature pass the limit"
+
+
+      repeat: 1
+      active: yes
+      wait: 1
+
+      afterCleanup:
+      faultCleanup:
+      brokenCleanup:
